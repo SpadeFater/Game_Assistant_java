@@ -1,9 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
-public class AppWindow extends JFrame  {    //创建一个窗口
+public class AppWindowMain extends JFrame  {    //创建一个窗口
 	public static void main(String[] args) {		
        
-	    JFrame frame = new AppWindow();         //创建一个窗口
+	    JFrame frame = new AppWindowMain();         //创建一个窗口
         JPanel panel = new JPanel();
 
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //设置一个关闭窗口         
@@ -14,5 +14,7 @@ public class AppWindow extends JFrame  {    //创建一个窗口
 
         frame.add(panel); //将面板添加到窗口中
         panel.setBackground(Color.YELLOW);
+
+
         }
     }
