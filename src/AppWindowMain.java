@@ -1,38 +1,62 @@
 import java.awt.*;
 import javax.swing.*;
-public class AppWindowMain extends JFrame  {    //创建一个窗口
-	public static void main(String[] args) {		
-       
-	    JFrame frame = new AppWindowMain();//创建一个窗口
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //设置一个关闭窗口
-        frame.setSize(900 , 600);         //setSize()设置窗口大小
-        frame.setVisible(true);           //setVisible(true)  让窗口显示出来	}
-        frame.setTitle("游戏助手");
-        frame.setBackground(Color.BLACK);
-        frame.setLayout(new GridLayout(1,1));
+public class AppWindowMain extends JFrame {
 
-        JPanel battonPanel = new JPanel(); //创建一个面板
+    public AppWindowMain() {
+        setTitle("游戏助手");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(900, 600);
+        setLocationRelativeTo(null);
+        setBackground(Color.BLACK);
+
+        // 创建面板和组件
+        JPanel battonPanel = new JPanel();
         JPanel functionPanel = new JPanel();
+        functionPanel.setBackground(new Color(173, 216, 230));
 
-        functionPanel.setBackground(Color.BLUE);
+        // 创建按钮
+        JButton dontStarveButton = new JButton("Don't Starve");
+        JButton minecraftButton = new JButton("Minecraft");
+        JButton leagueButton = new JButton("League of Legends");
+        JButton zhouyButton = new JButton("三角洲行动");
 
-        Button dontStarveButton = new Button("Don't Starve");
-        Button minecraftButton = new Button("Minecraft");
-        Button leagueButton = new Button("League of Legends");
-        Button zhouyButton = new Button("三角洲行动");
+        // 设置按钮样式
+        Font buttonFont = new Font("微软雅黑", Font.BOLD, 14);
+        Dimension buttonSize = new Dimension(180, 40);
 
-        battonPanel.setLayout(new GridLayout(8,1));//设置布局,创建一个网格布局,加入按钮
-        battonPanel.add(dontStarveButton);
-        battonPanel.add(minecraftButton);
-        battonPanel.add(leagueButton);
-        battonPanel.add(zhouyButton);
-
-        frame.add(battonPanel);  //将面板添加到窗口中
-        frame.add(functionPanel);
-
-
-
-
+        JButton[] buttons = {dontStarveButton, minecraftButton, leagueButton, zhouyButton};
+        for (JButton button : buttons) {
+        button.setFont(buttonFont);
+        button.setPreferredSize(buttonSize);
+        button.setBackground(new Color(70, 130, 180));
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false); // 去除焦点边框
+        button.setBorder(BorderFactory.createRaisedBevelBorder());
+        button.addActionListener(e -> {});
         }
+
+
+        // 设置按钮面板布局
+        battonPanel.setLayout(new GridLayout(8, 1));
+        for(int i = 0; i < buttons.length && i<8; i++){
+                if(buttons[i]!=null){
+                        battonPanel.add(buttons[i]);
+                }
+        }
+
+        // 使用分割面板
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, battonPanel, functionPanel);
+        splitPane.setDividerLocation(200);
+        splitPane.setResizeWeight(0.2);
+
+        add(splitPane);
     }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new AppWindowMain().setVisible(true);
+        });
+
+    }
+}
